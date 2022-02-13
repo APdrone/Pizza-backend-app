@@ -94,7 +94,7 @@ exports.protect = async (req, res, next) => {
     }
 
     if (!token) {
-      res.status(401).json({
+      return res.status(401).json({
         status: "failure",
         //we will pass down the token
         msg: "You are not logged in! Please log in to get access",
@@ -106,7 +106,7 @@ exports.protect = async (req, res, next) => {
     const currentUser = await User.findById(decoded.id);
     // console.log("currentUser ::", currentUser);
     if (!currentUser) {
-      res.status(401).json({
+      return res.status(401).json({
         status: "failure",
         //we will pass down the token
         msg: "the user belonging to this token doesnt exist",
@@ -190,7 +190,7 @@ exports.resetPassword = async (req, res, next) => {
     });
     //2) if token has not expired and there is user
     if (!user) {
-      res.status(400).json({
+      return res.status(400).json({
         status: "failure",
         //we will pass down the token
         msg: "Token is invalid or has expired",
