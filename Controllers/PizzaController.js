@@ -1,4 +1,4 @@
-const Pizza = require("../Model/pizzaModel");
+const Pizza = require("../model/pizzaModel");
 
 exports.getAllPizza = async (req, res) => {
   try {
